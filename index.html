@@ -46,35 +46,43 @@ body {
   background: #4a3f35;
   margin: 6px 0;
   border-radius: 2px;
-  transition: 0.3s;
 }
 
+/* ===== CARRINHO ===== */
+.cart-icon {
+  position: absolute;
+  left: 20px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.cart-icon span {
+  background: #c9a86a;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 12px;
+}
+
+/* ===== MENU FILTRO ===== */
 .menu-filtro {
   display: none;
   position: absolute;
   right: 15px;
   top: 90px;
-  background: #ffffff;
+  background: #fff;
   border-radius: 14px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.18);
   width: 240px;
   overflow: hidden;
-  animation: slideDown 0.25s ease;
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .menu-filtro button {
   width: 100%;
-  padding: 16px 18px;
+  padding: 16px;
   border: none;
   background: none;
   text-align: left;
-  font-size: 16px;
-  color: #4a3f35;
   cursor: pointer;
 }
 
@@ -82,26 +90,7 @@ body {
   background: #f6efe6;
 }
 
-/* ===== BANNER ===== */
-.banner {
-  background: linear-gradient(to right, #f6efe6, #f1e6d8);
-  padding: 40px 20px;
-  text-align: center;
-  border-radius: 20px;
-  margin-bottom: 30px;
-}
-
-.banner h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.banner p {
-  font-size: 16px;
-  color: #6b5e52;
-}
-
-/* ===== PRODUTOS ===== */
+/* ===== CONTEÚDO ===== */
 .container {
   max-width: 1200px;
   margin: auto;
@@ -120,44 +109,72 @@ body {
   overflow: hidden;
   text-align: center;
   padding-bottom: 15px;
-  transition: 0.3s;
-}
-
-.produto:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
 }
 
 .produto img {
   width: 100%;
-  height: 230px;
+  height: 220px;
   object-fit: cover;
   background: #eee;
 }
 
 .produto h3 {
-  margin: 15px 0 10px;
-  font-size: 18px;
+  margin: 15px 0;
 }
 
-/* ===== BOTÃO ===== */
 .btn {
-  display: inline-block;
   background: linear-gradient(135deg, #c9a86a, #b8955f);
   color: #fff;
-  padding: 12px 26px;
-  text-decoration: none;
+  padding: 12px 22px;
   border-radius: 30px;
-  font-weight: bold;
-  transition: 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+/* ===== MODAL CARRINHO ===== */
+.carrinho-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
 }
 
-/* ===== WHATSAPP FIXO ===== */
+.carrinho-box {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.carrinho-box h2 {
+  text-align: center;
+}
+
+.carrinho-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.carrinho-box li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.carrinho-box button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 .whatsapp-fixo {
   position: fixed;
   right: 20px;
@@ -167,14 +184,6 @@ body {
   padding: 15px;
   border-radius: 50%;
   font-size: 22px;
-  text-decoration: none;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #f6efe6;
-  margin-top: 40px;
 }
 </style>
 </head>
@@ -182,6 +191,8 @@ footer {
 <body>
 
 <header class="topo">
+  <div class="cart-icon" onclick="abrirCarrinho()">🛒 <span id="cartCount">0</span></div>
+
   <img src="logo-maya.png" class="logo">
 
   <div class="menu-instagram" onclick="toggleMenu()">
@@ -190,62 +201,114 @@ footer {
 
   <div id="menuFiltro" class="menu-filtro">
     <button onclick="filtrar('todos')">Todos</button>
-    <button onclick="filtrar('saida')">Saída de banho</button>
     <button onclick="filtrar('biquini')">Biquíni</button>
-    <button onclick="filtrar('shorts')">Shorts</button>
+    <button onclick="filtrar('saida')">Saída de banho</button>
     <button onclick="filtrar('vestidos')">Vestidos</button>
-    <button onclick="filtrar('conjuntos')">Conjuntos</button>
-    <button onclick="filtrar('blusa')">Blusa</button>
   </div>
 </header>
 
 <div class="container">
-
-  <div class="banner">
-    <h2>Coleção Beachwear</h2>
-    <p>Peças pensadas para valorizar você em todos os momentos</p>
-  </div>
-
   <div class="produtos">
 
     <div class="produto biquini">
       <img src="https://via.placeholder.com/400x300">
       <h3>Biquíni Maya</h3>
-      <a class="btn" href="https://wa.me/558981178676">Comprar</a>
+      <a class="btn" onclick="adicionarCarrinho('Biquíni Maya')">Adicionar</a>
     </div>
 
     <div class="produto saida">
       <img src="https://via.placeholder.com/400x300">
       <h3>Saída de Banho</h3>
-      <a class="btn" href="https://wa.me/558981178676">Comprar</a>
+      <a class="btn" onclick="adicionarCarrinho('Saída de Banho')">Adicionar</a>
     </div>
 
     <div class="produto vestidos">
       <img src="https://via.placeholder.com/400x300">
       <h3>Vestido Praia</h3>
-      <a class="btn" href="https://wa.me/558981178676">Comprar</a>
+      <a class="btn" onclick="adicionarCarrinho('Vestido Praia')">Adicionar</a>
     </div>
 
   </div>
 </div>
 
-<footer>
-© 2026 • Maya Beachwear
-</footer>
+<!-- MODAL -->
+<div id="carrinhoModal" class="carrinho-modal">
+  <div class="carrinho-box">
+    <h2>Meu Carrinho</h2>
+    <ul id="listaCarrinho"></ul>
+    <a class="btn" onclick="finalizarWhatsApp()">Finalizar no WhatsApp</a><br><br>
+    <button onclick="fecharCarrinho()">Fechar</button>
+  </div>
+</div>
 
 <a class="whatsapp-fixo" href="https://wa.me/558981178676">💬</a>
 
 <script>
+let carrinho = [];
+
+function adicionarCarrinho(nome) {
+  const item = carrinho.find(p => p.nome === nome);
+  if (item) {
+    item.qtd++;
+  } else {
+    carrinho.push({ nome, qtd: 1 });
+  }
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+  document.getElementById('cartCount').innerText =
+    carrinho.reduce((s, i) => s + i.qtd, 0);
+}
+
+function abrirCarrinho() {
+  const lista = document.getElementById('listaCarrinho');
+  lista.innerHTML = '';
+
+  carrinho.forEach((item, i) => {
+    lista.innerHTML += `
+      <li>
+        ${item.nome} (${item.qtd})
+        <button onclick="removerItem(${i})">❌</button>
+      </li>`;
+  });
+
+  document.getElementById('carrinhoModal').style.display = 'block';
+}
+
+function fecharCarrinho() {
+  document.getElementById('carrinhoModal').style.display = 'none';
+}
+
+function removerItem(i) {
+  carrinho.splice(i, 1);
+  atualizarCarrinho();
+  abrirCarrinho();
+}
+
+function finalizarWhatsApp() {
+  if (carrinho.length === 0) {
+    alert('Carrinho vazio');
+    return;
+  }
+
+  let msg = 'Olá 😊 Gostaria de comprar:%0A';
+  carrinho.forEach(i => {
+    msg += `- ${i.nome} (x${i.qtd})%0A`;
+  });
+
+  window.open('https://wa.me/558981178676?text=' + msg);
+}
+
 function toggleMenu() {
-  const menu = document.getElementById('menuFiltro');
-  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  const m = document.getElementById('menuFiltro');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
 }
 
 function filtrar(cat) {
   document.querySelectorAll('.produto').forEach(p => {
     p.style.display = (cat === 'todos' || p.classList.contains(cat)) ? 'block' : 'none';
   });
-  document.getElementById('menuFiltro').style.display = 'none';
 }
 </script>
 

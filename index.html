@@ -8,51 +8,23 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #333;
-      padding-top: 120px;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+      padding-top: 100px;
     }
 
-    /* TOPO FIXO */
-    .topo {
+    header {
       position: fixed;
       top: 0;
       width: 100%;
       background: #111;
       color: #fff;
       z-index: 1000;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .topo h1 {
-      margin: 0;
-      letter-spacing: 4px;
-    }
-
-    .topo p {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #ccc;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #25d366;
-      color: #fff;
-      padding: 12px 22px;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      margin-top: 15px;
-    }
-
-    /* MENU ☰ */
-    .menu-container {
-      position: absolute;
-      right: 20px;
-      top: 25px;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .menu-icon {
@@ -63,31 +35,33 @@
     .menu-filtro {
       display: none;
       position: absolute;
-      right: 0;
-      top: 35px;
+      right: 20px;
+      top: 55px;
       background: #fff;
-      border-radius: 10px;
+      color: #000;
       box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      border-radius: 8px;
       overflow: hidden;
+      width: 180px;
     }
 
     .menu-filtro button {
       width: 100%;
-      padding: 12px 18px;
+      padding: 12px 15px;
       border: none;
       background: none;
       text-align: left;
+      font-size: 15px;
       cursor: pointer;
-      font-size: 14px;
     }
 
     .menu-filtro button:hover {
-      background: #f2f2f2;
+      background: #f7f7f7;
     }
 
     .container {
       padding: 20px;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
     }
 
@@ -99,137 +73,120 @@
     }
 
     .produto {
-      border: 1px solid #eee;
+      border: 1px solid #ddd;
       border-radius: 10px;
       overflow: hidden;
       text-align: center;
       padding-bottom: 15px;
+      transition: 0.3s;
     }
 
-    .produto .img {
-      height: 240px;
-      background: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-size: 14px;
+    .produto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .produto img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
     }
 
     .produto h3 {
-      margin: 12px 0 5px;
+      font-size: 18px;
+      margin: 15px 0;
     }
 
-    .produto p {
-      margin: 0;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #fff;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-
-    .whatsapp-fixo {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
+    .btn-produto {
+      display: block;
       background: #25d366;
       color: #fff;
-      padding: 15px;
-      border-radius: 50%;
       text-decoration: none;
-      font-size: 22px;
+      padding: 12px 0;
+      border-radius: 25px;
+      margin: 10px 30px;
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- TOPO FIXO -->
-  <header class="topo">
-    <div class="menu-container">
-      <span class="menu-icon" onclick="toggleMenu()">☰</span>
+<header>
+  <h2>MAYA</h2>
+  <span class="menu-icon" onclick="toggleMenu()">☰</span>
 
-      <div id="menuFiltro" class="menu-filtro">
-        <button onclick="filtrar('todos')">Todos</button>
-        <button onclick="filtrar('saida')">Saída de banho</button>
-        <button onclick="filtrar('biquini')">Biquíni</button>
-        <button onclick="filtrar('shorts')">Shorts</button>
-        <button onclick="filtrar('vestidos')">Vestidos</button>
-        <button onclick="filtrar('conjuntos')">Conjuntos</button>
-        <button onclick="filtrar('blusa')">Blusa</button>
-      </div>
-    </div>
-
-    <h1>MAYA</h1>
-    <p>Moda feminina que combina com você</p>
-
-    <a class="btn" href="https://wa.me/558981178676" target="_blank">
-      Comprar pelo WhatsApp
-    </a>
-  </header>
-
-  <div class="container">
-    <h2>Produtos</h2>
-
-    <div class="produtos">
-
-      <div class="produto vestidos">
-        <div class="img">Imagem do produto</div>
-        <h3>Vestido Maya</h3>
-        <p>R$ 00,00</p>
-        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20do%20Vestido%20Maya" target="_blank">Comprar</a>
-      </div>
-
-      <div class="produto conjuntos">
-        <div class="img">Imagem do produto</div>
-        <h3>Conjunto Maya</h3>
-        <p>R$ 00,00</p>
-        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20do%20Conjunto%20Maya" target="_blank">Comprar</a>
-      </div>
-
-      <div class="produto blusa">
-        <div class="img">Imagem do produto</div>
-        <h3>Blusa Maya</h3>
-        <p>R$ 00,00</p>
-        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20da%20Blusa%20Maya" target="_blank">Comprar</a>
-      </div>
-
-    </div>
+  <div id="menuFiltro" class="menu-filtro">
+    <button onclick="filtrar('todos')">Todos</button>
+    <button onclick="filtrar('saida')">Saída de banho</button>
+    <button onclick="filtrar('biquini')">Biquíni</button>
+    <button onclick="filtrar('shorts')">Shorts</button>
+    <button onclick="filtrar('vestidos')">Vestidos</button>
+    <button onclick="filtrar('conjuntos')">Conjuntos</button>
+    <button onclick="filtrar('blusa')">Blusa</button>
   </div>
+</header>
 
-  <footer>
-    © 2026 • Loja Maya • Moda Feminina
-  </footer>
+<div class="container">
+  <div class="produtos">
 
-  <a class="whatsapp-fixo" href="https://wa.me/558981178676" target="_blank">💬</a>
+    <div class="produto biquini">
+      <img src="https://via.placeholder.com/300x200" alt="Biquíni">
+      <h3>Biquíni Estilo</h3>
+      <a class="btn-produto" href="https://wa.me/558981178676?text=Oi%20😊%20tenho%20interesse%20no%20Biquíni%20Estilo">Comprar</a>
+    </div>
 
-  <!-- JS FILTRO -->
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('menuFiltro');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    <div class="produto saida">
+      <img src="https://via.placeholder.com/300x200" alt="Saída de banho">
+      <h3>Saída de Banho</h3>
+      <a class="btn-produto" href="https://wa.me/558981178676?text=Oi%20😊%20tenho%20interesse%20na%20Saída%20de%20Banho">Comprar</a>
+    </div>
+
+    <div class="produto vestidos">
+      <img src="https://via.placeholder.com/300x200" alt="Vestido">
+      <h3>Vestido Floral</h3>
+      <a class="btn-produto" href="https://wa.me/558981178676?text=Oi%20😊%20tenho%20interesse%20no%20Vestido%20Floral">Comprar</a>
+    </div>
+
+    <div class="produto shorts">
+      <img src="https://via.placeholder.com/300x200" alt="Shorts">
+      <h3>Shorts Verão</h3>
+      <a class="btn-produto" href="https://wa.me/558981178676?text=Oi%20😊%20tenho%20interesse%20no%20Shorts%20Verão">Comprar</a>
+    </div>
+
+    <div class="produto conjuntos">
+      <img src="https://via.placeholder.com/300x200" alt="Conjunto">
+      <h3>Conjunto Chic</h3>
+      <a class="btn-produto" href="https://wa.me/558981178676?text=Oi%20😊%20tenho%20interesse%20no%20Conjunto%20Chic">Comprar</a>
+    </div>
+
+    <div class="produto blusa">
+      <img src="https://via.placeholder.com/300x200" alt="Blusa">
+      <h3>Blusa Básica</h3>
+      <a class="btn-produto" href="https://wa.me/558981178676?text=Oi%20😊%20tenho%20interesse%20na%20Blusa%20Básica">Comprar</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('menuFiltro');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+function filtrar(categoria) {
+  const produtos = document.querySelectorAll('.produto');
+  produtos.forEach(p => {
+    if (categoria === 'todos' || p.classList.contains(categoria)) {
+      p.style.display = 'block';
+    } else {
+      p.style.display = 'none';
     }
-
-    function filtrar(categoria) {
-      const produtos = document.querySelectorAll('.produto');
-
-      produtos.forEach(produto => {
-        if (categoria === 'todos' || produto.classList.contains(categoria)) {
-          produto.style.display = 'block';
-        } else {
-          produto.style.display = 'none';
-        }
-      });
-
-      document.getElementById('menuFiltro').style.display = 'none';
-    }
-  </script>
+  });
+  document.getElementById('menuFiltro').style.display = 'none';
+}
+</script>
 
 </body>
 </html>

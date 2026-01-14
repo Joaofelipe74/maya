@@ -34,12 +34,6 @@ header{
   height:60px;
   width:auto;
   margin-left:20px;
-  animation:logoEntrada 1s ease-out;
-}
-
-@keyframes logoEntrada{
-  from{opacity:0;transform:translateY(-10px)}
-  to{opacity:1;transform:translateY(0)}
 }
 
 /* MENU */
@@ -81,7 +75,7 @@ header{
 .container{max-width:1200px;margin:auto;padding:20px}
 
 /* CATEGORIA */
-.categoria{margin-top:50px}
+.categoria{margin-top:60px}
 .categoria h2{
   font-size:26px;
   border-left:4px solid #c9a86a;
@@ -134,7 +128,6 @@ header{
   align-items:center;
   justify-content:center;
   font-size:24px;
-  cursor:pointer;
 }
 .cart span{
   position:absolute;
@@ -199,16 +192,19 @@ header{
 
 <div class="container">
 
-<section id="biquini" class="categoria">
-<h2>Biquínis</h2>
-<div class="produtos">
-<div class="produto">
-<img src="https://via.placeholder.com/400x300">
-<h3>Biquíni Premium</h3>
-<button class="btn" onclick="add('Biquíni Premium')">Adicionar</button>
-</div>
-</div>
-</section>
+<section id="biquini" class="categoria"><h2>Biquínis</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Biquíni</h3><button class="btn" onclick="add('Biquíni')">Adicionar</button></div></div></section>
+
+<section id="shorts" class="categoria"><h2>Shorts</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Short</h3><button class="btn" onclick="add('Short')">Adicionar</button></div></div></section>
+
+<section id="vestidos" class="categoria"><h2>Vestidos</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Vestido</h3><button class="btn" onclick="add('Vestido')">Adicionar</button></div></div></section>
+
+<section id="saida" class="categoria"><h2>Saída de Banho</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Saída</h3><button class="btn" onclick="add('Saída')">Adicionar</button></div></div></section>
+
+<section id="blusas" class="categoria"><h2>Blusas</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Blusa</h3><button class="btn" onclick="add('Blusa')">Adicionar</button></div></div></section>
+
+<section id="oculos" class="categoria"><h2>Óculos</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Óculos</h3><button class="btn" onclick="add('Óculos')">Adicionar</button></div></div></section>
+
+<section id="chapeu" class="categoria"><h2>Chapéu / Boné</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Chapéu</h3><button class="btn" onclick="add('Chapéu')">Adicionar</button></div></div></section>
 
 </div>
 
@@ -226,23 +222,10 @@ header{
 
 <script>
 let cart=[];
-
-function toggleMenu(){
-  menu.style.display=menu.style.display==='block'?'none':'block';
-}
-function go(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-  menu.style.display='none';
-}
-function add(nome){
-  cart.push(nome);
-  count.innerText=cart.length;
-}
-function openCart(){
-  list.innerHTML='';
-  cart.forEach(i=>list.innerHTML+=`<li>${i}</li>`);
-  modal.style.display='block';
-}
+function toggleMenu(){menu.style.display=menu.style.display==='block'?'none':'block'}
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});menu.style.display='none'}
+function add(nome){cart.push(nome);count.innerText=cart.length}
+function openCart(){list.innerHTML='';cart.forEach(i=>list.innerHTML+=`<li>${i}</li>`);modal.style.display='block'}
 function closeCart(){modal.style.display='none'}
 function finish(){
   let msg='Olá 😊 Quero comprar:%0A';
@@ -253,3 +236,4 @@ function finish(){
 
 </body>
 </html>
+

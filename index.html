@@ -6,214 +6,207 @@
 <title>Maya Beachwear</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #fff;
-  color: #4a3f35;
-  padding-top: 120px;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fff;
+  color:#4a3f35;
+  padding-top:110px;
 }
 
 /* ===== TOPO ===== */
-.topo {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 90px;
-  background: #f6efe6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #e6dccf;
-  z-index: 1000;
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:90px;
+  background:#f6efe6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1px solid #e6dccf;
+  z-index:1000;
 }
-
-.logo { height: 60px; }
+header h1{margin:0;letter-spacing:3px}
 
 /* ===== MENU ☰ ===== */
-.menu-instagram {
-  position: absolute;
-  right: 20px;
-  width: 34px;
-  cursor: pointer;
+.menu{
+  position:absolute;
+  right:20px;
+  width:34px;
+  cursor:pointer;
 }
-.menu-instagram span {
-  display: block;
-  height: 4px;
-  background: #4a3f35;
-  margin: 6px 0;
-  border-radius: 2px;
+.menu span{
+  display:block;
+  height:4px;
+  background:#4a3f35;
+  margin:6px 0;
+  border-radius:2px;
 }
-
-.menu-filtro {
-  display: none;
-  position: absolute;
-  right: 15px;
-  top: 90px;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-  width: 240px;
+.menu-box{
+  display:none;
+  position:absolute;
+  top:90px;
+  right:15px;
+  background:#fff;
+  width:240px;
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
-.menu-filtro button {
-  width: 100%;
-  padding: 16px;
-  border: none;
-  background: none;
-  text-align: left;
-  font-size: 16px;
-  cursor: pointer;
+.menu-box button{
+  width:100%;
+  padding:16px;
+  border:none;
+  background:none;
+  text-align:left;
+  font-size:16px;
+  cursor:pointer;
 }
-.menu-filtro button:hover { background: #f6efe6; }
+.menu-box button:hover{background:#f6efe6}
 
 /* ===== CONTAINER ===== */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
+.container{max-width:1200px;margin:auto;padding:20px}
+
+/* ===== CATEGORIA ===== */
+.categoria{margin-top:50px}
+.categoria h2{
+  font-size:26px;
+  border-left:4px solid #c9a86a;
+  padding-left:12px;
 }
 
-/* ===== CATEGORIAS ===== */
-.categoria { margin-top: 50px; }
-
-.categoria h2 {
-  font-size: 26px;
-  margin-bottom: 10px;
-  border-left: 4px solid #c9a86a;
-  padding-left: 12px;
+/* ===== SUBCATEGORIA ===== */
+.subcats{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:15px 0;
+}
+.subcats button{
+  padding:8px 16px;
+  border-radius:20px;
+  border:1px solid #c9a86a;
+  background:transparent;
+  cursor:pointer;
+}
+.subcats button.ativa,
+.subcats button:hover{
+  background:#c9a86a;
+  color:#fff;
 }
 
-/* ===== SUBCATEGORIAS ===== */
-.subcategorias {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+/* ===== PRODUTOS ===== */
+.produtos{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
 }
-
-.subcategorias button {
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: 1px solid #c9a86a;
-  background: transparent;
-  color: #4a3f35;
-  cursor: pointer;
+.produto{
+  border:1px solid #e6dccf;
+  border-radius:16px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:15px;
+  transition:.3s;
 }
-
-.subcategorias button.ativa,
-.subcategorias button:hover {
-  background: #c9a86a;
-  color: #fff;
-}
-
-/* ===== GRID ===== */
-.produtos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px;
-}
-
-/* ===== CARD ===== */
-.produto {
-  background: #fff;
-  border: 1px solid #e6dccf;
-  border-radius: 16px;
-  overflow: hidden;
-  text-align: center;
-  padding-bottom: 18px;
-  transition: .3s;
-}
-
 .produto:hover,
-.produto.touch {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+.produto.touch{
+  transform:translateY(-8px) scale(1.03);
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
 }
-
-.produto img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  background: #eee;
+.produto img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  background:#eee;
 }
-
-.produto h3 {
-  margin: 14px 0;
-  font-size: 18px;
-}
+.produto h3{margin:14px 0}
 
 /* ===== BOTÃO ===== */
-.btn {
-  background: linear-gradient(135deg, #c9a86a, #b8955f);
-  color: #fff;
-  padding: 12px 26px;
-  border-radius: 30px;
-  cursor: pointer;
-  border: none;
+.btn{
+  background:linear-gradient(135deg,#c9a86a,#b8955f);
+  color:#fff;
+  padding:12px 26px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
 }
 
 /* ===== CARRINHO ===== */
-.carrinho-flutuante {
-  position: fixed;
-  right: 20px;
-  bottom: 90px;
-  background: #c9a86a;
-  color: #fff;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 3000;
+.cart{
+  position:fixed;
+  right:20px;
+  bottom:90px;
+  background:#c9a86a;
+  color:#fff;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  cursor:pointer;
+  z-index:3000;
 }
-.carrinho-flutuante span {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: #ff4d4d;
-  color: #fff;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 50%;
+.cart span{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  background:#ff4d4d;
+  color:#fff;
+  font-size:12px;
+  padding:2px 6px;
+  border-radius:50%;
+}
+
+/* ===== MODAL ===== */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:4000;
+}
+.modal-box{
+  background:#fff;
+  width:90%;
+  max-width:400px;
+  margin:80px auto;
+  padding:20px;
+  border-radius:16px;
 }
 
 /* ===== WHATSAPP ===== */
-.whatsapp-fixo {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  background: #25d366;
-  color: #fff;
-  padding: 15px;
-  border-radius: 50%;
-  font-size: 22px;
-  z-index: 3000;
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#25d366;
+  color:#fff;
+  padding:15px;
+  border-radius:50%;
+  font-size:22px;
 }
 </style>
 </head>
 
 <body>
 
-<header class="topo">
-  <img src="logo-maya.png" class="logo">
-
-  <div class="menu-instagram" onclick="toggleMenu()">
+<header>
+  <h1>MAYA</h1>
+  <div class="menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
-
-  <div id="menuFiltro" class="menu-filtro">
-    <button onclick="irPara('biquini')">Biquínis</button>
-    <button onclick="irPara('shorts')">Shorts</button>
-    <button onclick="irPara('vestidos')">Vestidos</button>
-    <button onclick="irPara('saida')">Saída de Banho</button>
-    <button onclick="irPara('blusas')">Blusas</button>
-    <button onclick="irPara('oculos')">Óculos</button>
-    <button onclick="irPara('chapeu')">Chapéu / Boné</button>
+  <div class="menu-box" id="menu">
+    <button onclick="go('biquini')">Biquínis</button>
+    <button onclick="go('shorts')">Shorts</button>
+    <button onclick="go('vestidos')">Vestidos</button>
+    <button onclick="go('saida')">Saída de Banho</button>
+    <button onclick="go('blusas')">Blusas</button>
+    <button onclick="go('oculos')">Óculos</button>
+    <button onclick="go('chapeu')">Chapéu / Boné</button>
   </div>
 </header>
 
@@ -222,14 +215,46 @@ body {
 <!-- BIQUÍNIS -->
 <section id="biquini" class="categoria">
 <h2>Biquínis</h2>
-<div class="subcategorias">
-<button class="ativa" onclick="filtrarSub('biquini','todos',this)">Todos</button>
-<button onclick="filtrarSub('biquini','cortininha',this)">Cortininha</button>
-<button onclick="filtrarSub('biquini','hotpant',this)">Hot Pant</button>
+<div class="subcats">
+<button class="ativa" onclick="sub('biquini','todos',this)">Todos</button>
+<button onclick="sub('biquini','cortininha',this)">Cortininha</button>
+<button onclick="sub('biquini','hotpant',this)">Hot Pant</button>
 </div>
 <div class="produtos">
-<div class="produto biquini cortininha"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Cortininha</h3><button class="btn" onclick="addCarrinho('Biquíni Cortininha')">Adicionar</button></div>
-<div class="produto biquini hotpant"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Hot Pant</h3><button class="btn" onclick="addCarrinho('Biquíni Hot Pant')">Adicionar</button></div>
+<div class="produto biquini cortininha"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Cortininha</h3><button class="btn" onclick="add('Biquíni Cortininha')">Adicionar</button></div>
+<div class="produto biquini hotpant"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Hot Pant</h3><button class="btn" onclick="add('Biquíni Hot Pant')">Adicionar</button></div>
+</div>
+</section>
+
+<!-- SHORTS -->
+<section id="shorts" class="categoria">
+<h2>Shorts</h2>
+<div class="produtos">
+<div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Short Jeans</h3><button class="btn" onclick="add('Short Jeans')">Adicionar</button></div>
+</div>
+</section>
+
+<!-- VESTIDOS -->
+<section id="vestidos" class="categoria">
+<h2>Vestidos</h2>
+<div class="produtos">
+<div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Vestido Praia</h3><button class="btn" onclick="add('Vestido Praia')">Adicionar</button></div>
+</div>
+</section>
+
+<!-- SAÍDA -->
+<section id="saida" class="categoria">
+<h2>Saída de Banho</h2>
+<div class="produtos">
+<div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Saída Praia</h3><button class="btn" onclick="add('Saída Praia')">Adicionar</button></div>
+</div>
+</section>
+
+<!-- BLUSAS -->
+<section id="blusas" class="categoria">
+<h2>Blusas</h2>
+<div class="produtos">
+<div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Blusa Beach</h3><button class="btn" onclick="add('Blusa Beach')">Adicionar</button></div>
 </div>
 </section>
 
@@ -237,7 +262,7 @@ body {
 <section id="oculos" class="categoria">
 <h2>Óculos</h2>
 <div class="produtos">
-<div class="produto oculos"><img src="https://via.placeholder.com/400x300"><h3>Óculos Fashion</h3><button class="btn" onclick="addCarrinho('Óculos Fashion')">Adicionar</button></div>
+<div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Óculos Fashion</h3><button class="btn" onclick="add('Óculos Fashion')">Adicionar</button></div>
 </div>
 </section>
 
@@ -245,48 +270,61 @@ body {
 <section id="chapeu" class="categoria">
 <h2>Chapéu / Boné</h2>
 <div class="produtos">
-<div class="produto chapeu"><img src="https://via.placeholder.com/400x300"><h3>Chapéu Verão</h3><button class="btn" onclick="addCarrinho('Chapéu Verão')">Adicionar</button></div>
+<div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Chapéu Verão</h3><button class="btn" onclick="add('Chapéu Verão')">Adicionar</button></div>
 </div>
 </section>
 
 </div>
 
-<div class="carrinho-flutuante" onclick="alert('Itens no carrinho: '+cart.length)">
-  🛒 <span id="cartCount">0</span>
+<div class="cart" onclick="openCart()">🛒<span id="count">0</span></div>
+<a class="whatsapp" href="https://wa.me/558981178676">💬</a>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2>Carrinho</h2>
+    <ul id="list"></ul>
+    <button class="btn" onclick="finish()">Finalizar no WhatsApp</button><br><br>
+    <button onclick="closeCart()">Fechar</button>
+  </div>
 </div>
 
-<a class="whatsapp-fixo" href="https://wa.me/558981178676">💬</a>
-
 <script>
-let cart = [];
+let cart=[];
 
 function toggleMenu(){
-  menuFiltro.style.display = menuFiltro.style.display === 'block' ? 'none' : 'block';
+  menu.style.display=menu.style.display==='block'?'none':'block';
 }
-
-function irPara(id){
+function go(id){
   document.getElementById(id).scrollIntoView({behavior:'smooth'});
-  menuFiltro.style.display = 'none';
+  menu.style.display='none';
 }
-
-function filtrarSub(cat, sub, btn){
-  const sec = document.getElementById(cat);
-  sec.querySelectorAll('.produto').forEach(p=>{
-    p.style.display = (sub==='todos'||p.classList.contains(sub))?'block':'none';
+function sub(cat,sub,btn){
+  document.querySelectorAll('#'+cat+' .produto').forEach(p=>{
+    p.style.display=(sub==='todos'||p.classList.contains(sub))?'block':'none';
   });
   btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('ativa'));
   btn.classList.add('ativa');
 }
-
-function addCarrinho(nome){
+function add(nome){
   cart.push(nome);
-  cartCount.innerText = cart.length;
+  count.innerText=cart.length;
+}
+function openCart(){
+  list.innerHTML='';
+  cart.forEach(i=>list.innerHTML+=`<li>${i}</li>`);
+  modal.style.display='block';
+}
+function closeCart(){modal.style.display='none'}
+function finish(){
+  let msg='Olá 😊 Quero comprar:%0A';
+  cart.forEach(i=>msg+=`- ${i}%0A`);
+  window.open('https://wa.me/558981178676?text='+msg);
 }
 
 /* mobile hover */
-document.querySelectorAll('.produto').forEach(card=>{
-  card.addEventListener('touchstart',()=>card.classList.add('touch'));
-  card.addEventListener('touchend',()=>setTimeout(()=>card.classList.remove('touch'),150));
+document.querySelectorAll('.produto').forEach(c=>{
+  c.addEventListener('touchstart',()=>c.classList.add('touch'));
+  c.addEventListener('touchend',()=>setTimeout(()=>c.classList.remove('touch'),150));
 });
 </script>
 

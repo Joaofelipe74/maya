@@ -8,11 +8,10 @@
 <style>
 * { box-sizing: border-box; }
 
-/* ===== BASE ===== */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff;
+  background: #fff;
   color: #4a3f35;
   padding-top: 120px;
 }
@@ -27,15 +26,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
   border-bottom: 1px solid #e6dccf;
+  z-index: 1000;
 }
 
-.logo {
-  height: 60px;
-}
+.logo { height: 60px; }
 
-/* ===== MENU 3 BARRAS ===== */
+/* ===== MENU ☰ ===== */
 .menu-instagram {
   position: absolute;
   right: 20px;
@@ -50,7 +47,6 @@ body {
   border-radius: 2px;
 }
 
-/* ===== MENU FILTRO ===== */
 .menu-filtro {
   display: none;
   position: absolute;
@@ -62,7 +58,6 @@ body {
   width: 240px;
   overflow: hidden;
 }
-
 .menu-filtro button {
   width: 100%;
   padding: 16px;
@@ -72,15 +67,23 @@ body {
   font-size: 16px;
   cursor: pointer;
 }
-.menu-filtro button:hover {
-  background: #f6efe6;
-}
+.menu-filtro button:hover { background: #f6efe6; }
 
-/* ===== CONTAINER ===== */
+/* ===== CONTEÚDO ===== */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+}
+
+/* ===== CATEGORIAS ===== */
+.categoria { margin-top: 50px; }
+
+.categoria h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c9a86a;
+  padding-left: 12px;
 }
 
 /* ===== GRID ===== */
@@ -98,17 +101,9 @@ body {
   overflow: hidden;
   text-align: center;
   padding-bottom: 18px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: entrar 0.6s ease forwards;
-  transition: transform .3s, box-shadow .3s;
+  transition: .3s;
 }
-
-@keyframes entrar {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.produto.hover,
+.produto:hover,
 .produto.touch {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 12px 30px rgba(0,0,0,0.18);
@@ -135,13 +130,6 @@ body {
   text-decoration: none;
   cursor: pointer;
   display: inline-block;
-}
-
-.produto.selecionado {
-  animation: pulseCard .35s;
-}
-@keyframes pulseCard {
-  50% { transform: scale(1.05); }
 }
 
 /* ===== CARRINHO ===== */
@@ -171,12 +159,6 @@ body {
   padding: 2px 6px;
   border-radius: 50%;
 }
-.carrinho-flutuante.pulse {
-  animation: pulse .4s;
-}
-@keyframes pulse {
-  50% { transform: scale(1.3); }
-}
 
 /* ===== WHATSAPP ===== */
 .whatsapp-fixo {
@@ -190,23 +172,6 @@ body {
   font-size: 22px;
   z-index: 3000;
 }
-
-/* ===== MODAL ===== */
-.carrinho-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.5);
-  z-index: 4000;
-}
-.carrinho-box {
-  background: #fff;
-  width: 90%;
-  max-width: 400px;
-  margin: 80px auto;
-  padding: 20px;
-  border-radius: 16px;
-}
 </style>
 </head>
 
@@ -215,114 +180,103 @@ body {
 <header class="topo">
   <img src="logo-maya.png" class="logo">
 
-  <!-- MENU 3 BARRAS -->
   <div class="menu-instagram" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 
   <div id="menuFiltro" class="menu-filtro">
-    <button onclick="filtrar('todos')">Todos</button>
-    <button onclick="filtrar('biquini')">Biquínis</button>
-    <button onclick="filtrar('saida')">Saída de Banho</button>
-    <button onclick="filtrar('vestidos')">Vestidos</button>
-    <button onclick="filtrar('shorts')">Shorts</button>
-    <button onclick="filtrar('blusas')">Blusas</button>
-    <button onclick="filtrar('oculos')">Óculos</button>
-    <button onclick="filtrar('chapeu')">Chapéu / Boné</button>
+    <button onclick="irPara('biquini')">Biquínis</button>
+    <button onclick="irPara('saida')">Saída de Banho</button>
+    <button onclick="irPara('vestidos')">Vestidos</button>
+    <button onclick="irPara('shorts')">Shorts</button>
+    <button onclick="irPara('blusas')">Blusas</button>
+    <button onclick="irPara('oculos')">Óculos</button>
+    <button onclick="irPara('chapeu')">Chapéu / Boné</button>
   </div>
 </header>
 
 <div class="container">
-  <div class="produtos">
 
-    <div class="produto biquini"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Maya</h3><a class="btn" onclick="add(this,'Biquíni Maya')">Adicionar</a></div>
-    <div class="produto biquini"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Luxo</h3><a class="btn" onclick="add(this,'Biquíni Luxo')">Adicionar</a></div>
+  <section id="biquini" class="categoria">
+    <h2>Biquínis</h2>
+    <div class="produtos">
+      <div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Maya</h3><a class="btn" onclick="add('Biquíni Maya')">Adicionar</a></div>
+      <div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Luxo</h3><a class="btn" onclick="add('Biquíni Luxo')">Adicionar</a></div>
+    </div>
+  </section>
 
-    <div class="produto saida"><img src="https://via.placeholder.com/400x300"><h3>Saída de Banho</h3><a class="btn" onclick="add(this,'Saída de Banho')">Adicionar</a></div>
+  <section id="saida" class="categoria">
+    <h2>Saída de Banho</h2>
+    <div class="produtos">
+      <div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Saída Praia</h3><a class="btn" onclick="add('Saída Praia')">Adicionar</a></div>
+    </div>
+  </section>
 
-    <div class="produto vestidos"><img src="https://via.placeholder.com/400x300"><h3>Vestido Praia</h3><a class="btn" onclick="add(this,'Vestido Praia')">Adicionar</a></div>
+  <section id="vestidos" class="categoria">
+    <h2>Vestidos</h2>
+    <div class="produtos">
+      <div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Vestido Praia</h3><a class="btn" onclick="add('Vestido Praia')">Adicionar</a></div>
+    </div>
+  </section>
 
-    <div class="produto shorts"><img src="https://via.placeholder.com/400x300"><h3>Shorts Verão</h3><a class="btn" onclick="add(this,'Shorts Verão')">Adicionar</a></div>
+  <section id="shorts" class="categoria">
+    <h2>Shorts</h2>
+    <div class="produtos">
+      <div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Shorts Verão</h3><a class="btn" onclick="add('Shorts Verão')">Adicionar</a></div>
+    </div>
+  </section>
 
-    <div class="produto blusas"><img src="https://via.placeholder.com/400x300"><h3>Blusa Beach</h3><a class="btn" onclick="add(this,'Blusa Beach')">Adicionar</a></div>
+  <section id="blusas" class="categoria">
+    <h2>Blusas</h2>
+    <div class="produtos">
+      <div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Blusa Beach</h3><a class="btn" onclick="add('Blusa Beach')">Adicionar</a></div>
+    </div>
+  </section>
 
-    <div class="produto oculos"><img src="https://via.placeholder.com/400x300"><h3>Óculos Fashion</h3><a class="btn" onclick="add(this,'Óculos Fashion')">Adicionar</a></div>
+  <section id="oculos" class="categoria">
+    <h2>Óculos</h2>
+    <div class="produtos">
+      <div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Óculos Fashion</h3><a class="btn" onclick="add('Óculos Fashion')">Adicionar</a></div>
+    </div>
+  </section>
 
-    <div class="produto chapeu"><img src="https://via.placeholder.com/400x300"><h3>Chapéu / Boné</h3><a class="btn" onclick="add(this,'Chapéu / Boné')">Adicionar</a></div>
+  <section id="chapeu" class="categoria">
+    <h2>Chapéu / Boné</h2>
+    <div class="produtos">
+      <div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Chapéu Verão</h3><a class="btn" onclick="add('Chapéu Verão')">Adicionar</a></div>
+    </div>
+  </section>
 
-  </div>
 </div>
 
-<div class="carrinho-flutuante" onclick="abrirCarrinho()" id="cartBtn">
+<div class="carrinho-flutuante" onclick="alert('Carrinho em uso')">
   🛒 <span id="cartCount">0</span>
 </div>
 
 <a class="whatsapp-fixo" href="https://wa.me/558981178676">💬</a>
 
-<div id="carrinhoModal" class="carrinho-modal">
-  <div class="carrinho-box">
-    <h2>Meu Carrinho</h2>
-    <ul id="listaCarrinho"></ul>
-    <a class="btn" onclick="finalizarWhatsApp()">Finalizar no WhatsApp</a><br><br>
-    <button onclick="fecharCarrinho()">Fechar</button>
-  </div>
-</div>
-
 <script>
 let carrinho = [];
 
-/* PC + MOBILE animação */
+function toggleMenu(){
+  menuFiltro.style.display = menuFiltro.style.display === 'block' ? 'none' : 'block';
+}
+
+function irPara(id){
+  document.getElementById(id).scrollIntoView({ behavior:'smooth' });
+  menuFiltro.style.display = 'none';
+}
+
+function add(nome){
+  carrinho.push(nome);
+  cartCount.innerText = carrinho.length;
+}
+
+/* mobile hover */
 document.querySelectorAll('.produto').forEach(card=>{
-  card.addEventListener('mouseenter',()=>card.classList.add('hover'));
-  card.addEventListener('mouseleave',()=>card.classList.remove('hover'));
   card.addEventListener('touchstart',()=>card.classList.add('touch'));
   card.addEventListener('touchend',()=>setTimeout(()=>card.classList.remove('touch'),150));
 });
-
-function add(btn,nome){
-  const card=btn.closest('.produto');
-  card.classList.add('selecionado');
-  setTimeout(()=>card.classList.remove('selecionado'),300);
-
-  const i=carrinho.find(p=>p.nome===nome);
-  i?i.qtd++:carrinho.push({nome,qtd:1});
-  atualizar();
-  animarCarrinho();
-}
-
-function atualizar(){
-  cartCount.innerText=carrinho.reduce((t,i)=>t+i.qtd,0);
-}
-
-function animarCarrinho(){
-  cartBtn.classList.add('pulse');
-  setTimeout(()=>cartBtn.classList.remove('pulse'),400);
-}
-
-function abrirCarrinho(){
-  listaCarrinho.innerHTML='';
-  carrinho.forEach(i=>listaCarrinho.innerHTML+=`<li>${i.nome} (x${i.qtd})</li>`);
-  carrinhoModal.style.display='block';
-}
-
-function fecharCarrinho(){ carrinhoModal.style.display='none'; }
-
-function finalizarWhatsApp(){
-  let msg='Olá 😊 Gostaria de comprar:%0A';
-  carrinho.forEach(i=>msg+=`- ${i.nome} (x${i.qtd})%0A`);
-  window.open('https://wa.me/558981178676?text='+msg);
-}
-
-function toggleMenu(){
-  menuFiltro.style.display=menuFiltro.style.display==='block'?'none':'block';
-}
-
-function filtrar(cat){
-  document.querySelectorAll('.produto').forEach(p=>{
-    p.style.display=(cat==='todos'||p.classList.contains(cat))?'block':'none';
-  });
-  menuFiltro.style.display='none';
-}
 </script>
 
 </body>

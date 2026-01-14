@@ -100,7 +100,6 @@ body {
   background: transparent;
   color: #4a3f35;
   cursor: pointer;
-  font-size: 14px;
 }
 
 .subcategorias button.ativa,
@@ -151,9 +150,8 @@ body {
   color: #fff;
   padding: 12px 26px;
   border-radius: 30px;
-  text-decoration: none;
   cursor: pointer;
-  display: inline-block;
+  border: none;
 }
 
 /* ===== CARRINHO ===== */
@@ -228,49 +226,40 @@ body {
 <button class="ativa" onclick="filtrarSub('biquini','todos',this)">Todos</button>
 <button onclick="filtrarSub('biquini','cortininha',this)">Cortininha</button>
 <button onclick="filtrarSub('biquini','hotpant',this)">Hot Pant</button>
-<button onclick="filtrarSub('biquini','asadelta',this)">Asa Delta</button>
 </div>
 <div class="produtos">
-<div class="produto biquini cortininha"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Cortininha</h3><a class="btn">Adicionar</a></div>
-<div class="produto biquini hotpant"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Hot Pant</h3><a class="btn">Adicionar</a></div>
-<div class="produto biquini asadelta"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Asa Delta</h3><a class="btn">Adicionar</a></div>
+<div class="produto biquini cortininha"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Cortininha</h3><button class="btn" onclick="addCarrinho('Biquíni Cortininha')">Adicionar</button></div>
+<div class="produto biquini hotpant"><img src="https://via.placeholder.com/400x300"><h3>Biquíni Hot Pant</h3><button class="btn" onclick="addCarrinho('Biquíni Hot Pant')">Adicionar</button></div>
 </div>
 </section>
 
-<!-- SHORTS -->
-<section id="shorts" class="categoria">
-<h2>Shorts</h2>
-<div class="subcategorias">
-<button class="ativa" onclick="filtrarSub('shorts','todos',this)">Todos</button>
-<button onclick="filtrarSub('shorts','jeans',this)">Jeans</button>
-<button onclick="filtrarSub('shorts','praia',this)">Praia</button>
-</div>
+<!-- ÓCULOS -->
+<section id="oculos" class="categoria">
+<h2>Óculos</h2>
 <div class="produtos">
-<div class="produto shorts jeans"><img src="https://via.placeholder.com/400x300"><h3>Short Jeans</h3><a class="btn">Adicionar</a></div>
-<div class="produto shorts praia"><img src="https://via.placeholder.com/400x300"><h3>Short Praia</h3><a class="btn">Adicionar</a></div>
+<div class="produto oculos"><img src="https://via.placeholder.com/400x300"><h3>Óculos Fashion</h3><button class="btn" onclick="addCarrinho('Óculos Fashion')">Adicionar</button></div>
 </div>
 </section>
 
-<!-- VESTIDOS -->
-<section id="vestidos" class="categoria">
-<h2>Vestidos</h2>
-<div class="subcategorias">
-<button class="ativa" onclick="filtrarSub('vestidos','todos',this)">Todos</button>
-<button onclick="filtrarSub('vestidos','curto',this)">Curto</button>
-<button onclick="filtrarSub('vestidos','longo',this)">Longo</button>
-</div>
+<!-- CHAPÉU -->
+<section id="chapeu" class="categoria">
+<h2>Chapéu / Boné</h2>
 <div class="produtos">
-<div class="produto vestidos curto"><img src="https://via.placeholder.com/400x300"><h3>Vestido Curto</h3><a class="btn">Adicionar</a></div>
-<div class="produto vestidos longo"><img src="https://via.placeholder.com/400x300"><h3>Vestido Longo</h3><a class="btn">Adicionar</a></div>
+<div class="produto chapeu"><img src="https://via.placeholder.com/400x300"><h3>Chapéu Verão</h3><button class="btn" onclick="addCarrinho('Chapéu Verão')">Adicionar</button></div>
 </div>
 </section>
 
 </div>
 
-<div class="carrinho-flutuante">🛒 <span>0</span></div>
-<a class="whatsapp-fixo" href="#">💬</a>
+<div class="carrinho-flutuante" onclick="alert('Itens no carrinho: '+cart.length)">
+  🛒 <span id="cartCount">0</span>
+</div>
+
+<a class="whatsapp-fixo" href="https://wa.me/558981178676">💬</a>
 
 <script>
+let cart = [];
+
 function toggleMenu(){
   menuFiltro.style.display = menuFiltro.style.display === 'block' ? 'none' : 'block';
 }
@@ -287,6 +276,11 @@ function filtrarSub(cat, sub, btn){
   });
   btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('ativa'));
   btn.classList.add('ativa');
+}
+
+function addCarrinho(nome){
+  cart.push(nome);
+  cartCount.innerText = cart.length;
 }
 
 /* mobile hover */

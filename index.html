@@ -15,7 +15,7 @@ body{
   padding-top:110px;
 }
 
-/* ===== TOPO ===== */
+/* ===== HEADER ===== */
 header{
   position:fixed;
   top:0;
@@ -85,7 +85,11 @@ header{
 .menu-box button:hover{background:#f6efe6}
 
 /* CONTAINER */
-.container{max-width:1200px;margin:auto;padding:20px}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
 
 /* PRODUTO */
 .produto{
@@ -154,7 +158,7 @@ header{
 
 <header>
   <div class="logo">
-    <!-- COQUEIRO DOURADO EM SVG -->
+    <!-- LOGO SVG (COQUEIRO) -->
     <svg width="42" height="42" viewBox="0 0 64 64" fill="none">
       <path d="M32 8c-6 6-6 16 0 22" stroke="#c9a86a" stroke-width="3"/>
       <path d="M32 8c6 6 6 16 0 22" stroke="#b8955f" stroke-width="3"/>
@@ -171,9 +175,9 @@ header{
   </div>
 
   <div class="menu-box" id="menu">
-    <button onclick="go()">Biquínis</button>
-    <button onclick="go()">Shorts</button>
-    <button onclick="go()">Vestidos</button>
+    <button onclick="closeMenu()">Biquínis</button>
+    <button onclick="closeMenu()">Shorts</button>
+    <button onclick="closeMenu()">Vestidos</button>
   </div>
 </header>
 
@@ -196,20 +200,25 @@ header{
 
 <script>
 let cart=[];
+
 function toggleMenu(){
-  menu.style.display=menu.style.display==='block'?'none':'block';
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+function closeMenu(){
+  menu.style.display='none';
 }
 function add(){
   cart.push('Produto');
-  count.innerText=cart.length;
+  count.innerText = cart.length;
 }
 function openCart(){
   list.innerHTML='';
   cart.forEach(i=>list.innerHTML+=`<li>${i}</li>`);
   modal.style.display='block';
 }
-function closeCart(){modal.style.display='none'}
-function go(){menu.style.display='none'}
+function closeCart(){
+  modal.style.display='none';
+}
 </script>
 
 </body>

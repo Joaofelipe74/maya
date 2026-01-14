@@ -11,22 +11,28 @@
       font-family: Arial, Helvetica, sans-serif;
       background: #ffffff;
       color: #333;
+      padding-top: 120px;
     }
 
-    header {
+    /* TOPO FIXO */
+    .topo {
+      position: fixed;
+      top: 0;
+      width: 100%;
       background: #111;
       color: #fff;
-      padding: 25px;
+      z-index: 1000;
+      padding: 20px;
       text-align: center;
     }
 
-    header h1 {
+    .topo h1 {
       margin: 0;
       letter-spacing: 4px;
     }
 
-    header p {
-      margin-top: 10px;
+    .topo p {
+      margin-top: 8px;
       font-size: 14px;
       color: #ccc;
     }
@@ -40,6 +46,43 @@
       border-radius: 25px;
       font-weight: bold;
       margin-top: 15px;
+    }
+
+    /* MENU ☰ */
+    .menu-container {
+      position: absolute;
+      right: 20px;
+      top: 25px;
+    }
+
+    .menu-icon {
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .menu-filtro {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 35px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    .menu-filtro button {
+      width: 100%;
+      padding: 12px 18px;
+      border: none;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .menu-filtro button:hover {
+      background: #f2f2f2;
     }
 
     .container {
@@ -104,11 +147,28 @@
     }
   </style>
 </head>
+
 <body>
 
-  <header>
+  <!-- TOPO FIXO -->
+  <header class="topo">
+    <div class="menu-container">
+      <span class="menu-icon" onclick="toggleMenu()">☰</span>
+
+      <div id="menuFiltro" class="menu-filtro">
+        <button onclick="filtrar('todos')">Todos</button>
+        <button onclick="filtrar('saida')">Saída de banho</button>
+        <button onclick="filtrar('biquini')">Biquíni</button>
+        <button onclick="filtrar('shorts')">Shorts</button>
+        <button onclick="filtrar('vestidos')">Vestidos</button>
+        <button onclick="filtrar('conjuntos')">Conjuntos</button>
+        <button onclick="filtrar('blusa')">Blusa</button>
+      </div>
+    </div>
+
     <h1>MAYA</h1>
     <p>Moda feminina que combina com você</p>
+
     <a class="btn" href="https://wa.me/558981178676" target="_blank">
       Comprar pelo WhatsApp
     </a>
@@ -119,31 +179,25 @@
 
     <div class="produtos">
 
-      <div class="produto">
+      <div class="produto vestidos">
         <div class="img">Imagem do produto</div>
         <h3>Vestido Maya</h3>
         <p>R$ 00,00</p>
-        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20do%20Vestido%20Maya" target="_blank">
-          Comprar
-        </a>
+        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20do%20Vestido%20Maya" target="_blank">Comprar</a>
       </div>
 
-      <div class="produto">
+      <div class="produto conjuntos">
         <div class="img">Imagem do produto</div>
         <h3>Conjunto Maya</h3>
         <p>R$ 00,00</p>
-        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20do%20Conjunto%20Maya" target="_blank">
-          Comprar
-        </a>
+        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20do%20Conjunto%20Maya" target="_blank">Comprar</a>
       </div>
 
-      <div class="produto">
+      <div class="produto blusa">
         <div class="img">Imagem do produto</div>
         <h3>Blusa Maya</h3>
         <p>R$ 00,00</p>
-        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20da%20Blusa%20Maya" target="_blank">
-          Comprar
-        </a>
+        <a class="btn" href="https://wa.me/558981178676?text=Oi%20😊%20Gostei%20da%20Blusa%20Maya" target="_blank">Comprar</a>
       </div>
 
     </div>
@@ -155,4 +209,27 @@
 
   <a class="whatsapp-fixo" href="https://wa.me/558981178676" target="_blank">💬</a>
 
+  <!-- JS FILTRO -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menuFiltro');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function filtrar(categoria) {
+      const produtos = document.querySelectorAll('.produto');
+
+      produtos.forEach(produto => {
+        if (categoria === 'todos' || produto.classList.contains(categoria)) {
+          produto.style.display = 'block';
+        } else {
+          produto.style.display = 'none';
+        }
+      });
+
+      document.getElementById('menuFiltro').style.display = 'none';
+    }
+  </script>
+
 </body>
+</html>

@@ -6,12 +6,11 @@
 <title>Maya Beachwear</title>
 
 <style>
-/* ================= RESET ================= */
 * {
   box-sizing: border-box;
 }
 
-/* ================= BASE ================= */
+/* ===== BASE ===== */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -20,7 +19,7 @@ body {
   padding-top: 120px;
 }
 
-/* ================= TOPO ================= */
+/* ===== TOPO ===== */
 .topo {
   position: fixed;
   top: 0;
@@ -38,13 +37,14 @@ body {
   height: 60px;
 }
 
-/* ================= PRODUTOS ================= */
+/* ===== CONTAINER ===== */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
 
+/* ===== GRID ===== */
 .produtos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -53,29 +53,42 @@ body {
 
 /* ===== CARD ===== */
 .produto {
+  background: #fff;
   border: 1px solid #e6dccf;
   border-radius: 16px;
   overflow: hidden;
   text-align: center;
   padding-bottom: 18px;
-  background: #fff;
-  transform: translateY(20px);
   opacity: 0;
-  animation: aparecer 0.6s ease forwards;
+  transform: translateY(30px);
+  animation: entrar 0.6s ease forwards;
 }
 
+/* entrada escalonada */
 .produto:nth-child(1){animation-delay:.1s}
 .produto:nth-child(2){animation-delay:.2s}
 .produto:nth-child(3){animation-delay:.3s}
+.produto:nth-child(4){animation-delay:.4s}
 
-@keyframes aparecer {
+@keyframes entrar {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== HOVER SELEÇÃO ===== */
+/* ===== HOVER (PC) ===== */
 .produto:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* ===== TOUCH (CELULAR) ===== */
+.produto:active {
+  transform: scale(0.96);
+}
+
+/* classe aplicada via JS no toque */
+.produto.touch {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
 }
 
 /* ===== IMAGEM ===== */
@@ -101,25 +114,23 @@ body {
   text-decoration: none;
   cursor: pointer;
   display: inline-block;
-  transition: 0.3s;
+  transition: transform .2s;
 }
 
-.btn:hover {
-  transform: scale(1.08);
+.btn:active {
+  transform: scale(0.92);
 }
 
-/* ===== ANIMAÇÃO SELEÇÃO ===== */
+/* ===== SELEÇÃO PRODUTO ===== */
 .produto.selecionado {
-  animation: pulseCard 0.4s;
+  animation: pulseCard 0.35s;
 }
 
 @keyframes pulseCard {
-  0% { transform: scale(1); }
   50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
 }
 
-/* ================= CARRINHO ================= */
+/* ===== CARRINHO FLUTUANTE ===== */
 .carrinho-flutuante {
   position: fixed;
   right: 20px;
@@ -156,7 +167,7 @@ body {
   50% { transform: scale(1.3); }
 }
 
-/* ================= WHATSAPP ================= */
+/* ===== WHATSAPP ===== */
 .whatsapp-fixo {
   position: fixed;
   right: 20px;
@@ -169,7 +180,7 @@ body {
   z-index: 3000;
 }
 
-/* ================= MODAL ================= */
+/* ===== MODAL ===== */
 .carrinho-modal {
   display: none;
   position: fixed;
@@ -237,10 +248,21 @@ body {
 <script>
 let carrinho = [];
 
+/* ===== TOUCH ANIMATION ===== */
+document.querySelectorAll('.produto').forEach(card => {
+  card.addEventListener('touchstart', () => {
+    card.classList.add('touch');
+  });
+  card.addEventListener('touchend', () => {
+    setTimeout(() => card.classList.remove('touch'), 150);
+  });
+});
+
+/* ===== CARRINHO ===== */
 function adicionarCarrinho(botao, nome) {
   const card = botao.closest('.produto');
   card.classList.add('selecionado');
-  setTimeout(() => card.classList.remove('selecionado'), 400);
+  setTimeout(() => card.classList.remove('selecionado'), 300);
 
   const item = carrinho.find(p => p.nome === nome);
   if (item) item.qtd++;

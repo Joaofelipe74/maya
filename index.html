@@ -6,9 +6,9 @@
 <title>Maya Beachwear</title>
 
 <style>
-*{box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box}
+
 body{
-  margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:#fff;
   color:#4a3f35;
@@ -30,10 +30,23 @@ header{
 }
 
 /* LOGO */
-.logo-maya{
-  height:60px;
-  width:auto;
-  margin-left:20px;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  animation:logoIn 1s ease-out;
+}
+
+.logo-text{
+  font-size:28px;
+  font-weight:500;
+  color:#8b5a2b;
+  letter-spacing:1px;
+}
+
+@keyframes logoIn{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 /* MENU */
@@ -74,36 +87,13 @@ header{
 /* CONTAINER */
 .container{max-width:1200px;margin:auto;padding:20px}
 
-/* CATEGORIA */
-.categoria{margin-top:60px}
-.categoria h2{
-  font-size:26px;
-  border-left:4px solid #c9a86a;
-  padding-left:12px;
-}
-
-/* PRODUTOS */
-.produtos{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:22px;
-}
+/* PRODUTO */
 .produto{
   border:1px solid #e6dccf;
   border-radius:16px;
-  overflow:hidden;
+  padding:20px;
   text-align:center;
-  padding-bottom:15px;
-  transition:.3s;
-}
-.produto:hover{
-  transform:translateY(-8px) scale(1.03);
-  box-shadow:0 12px 30px rgba(0,0,0,.18);
-}
-.produto img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
+  margin-top:40px;
 }
 .btn{
   background:linear-gradient(135deg,#c9a86a,#b8955f);
@@ -112,6 +102,7 @@ header{
   border-radius:30px;
   border:none;
   cursor:pointer;
+  margin-top:15px;
 }
 
 /* CARRINHO */
@@ -128,6 +119,7 @@ header{
   align-items:center;
   justify-content:center;
   font-size:24px;
+  cursor:pointer;
 }
 .cart span{
   position:absolute;
@@ -155,85 +147,70 @@ header{
   padding:20px;
   border-radius:16px;
 }
-
-/* WHATSAPP */
-.whatsapp{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  background:#25d366;
-  color:#fff;
-  padding:15px;
-  border-radius:50%;
-  font-size:22px;
-}
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="img/logo-maya.png" alt="Maya Beachwear" class="logo-maya">
+  <div class="logo">
+    <!-- COQUEIRO DOURADO EM SVG -->
+    <svg width="42" height="42" viewBox="0 0 64 64" fill="none">
+      <path d="M32 8c-6 6-6 16 0 22" stroke="#c9a86a" stroke-width="3"/>
+      <path d="M32 8c6 6 6 16 0 22" stroke="#b8955f" stroke-width="3"/>
+      <path d="M32 30v20" stroke="#8b5a2b" stroke-width="3"/>
+      <path d="M16 16c8-2 14 2 16 6" stroke="#c9a86a" stroke-width="3"/>
+      <path d="M48 16c-8-2-14 2-16 6" stroke="#c9a86a" stroke-width="3"/>
+    </svg>
+
+    <div class="logo-text">Maya Beachwear</div>
+  </div>
 
   <div class="menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 
   <div class="menu-box" id="menu">
-    <button onclick="go('biquini')">Biquínis</button>
-    <button onclick="go('shorts')">Shorts</button>
-    <button onclick="go('vestidos')">Vestidos</button>
-    <button onclick="go('saida')">Saída de Banho</button>
-    <button onclick="go('blusas')">Blusas</button>
-    <button onclick="go('oculos')">Óculos</button>
-    <button onclick="go('chapeu')">Chapéu / Boné</button>
+    <button onclick="go()">Biquínis</button>
+    <button onclick="go()">Shorts</button>
+    <button onclick="go()">Vestidos</button>
   </div>
 </header>
 
 <div class="container">
-
-<section id="biquini" class="categoria"><h2>Biquínis</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Biquíni</h3><button class="btn" onclick="add('Biquíni')">Adicionar</button></div></div></section>
-
-<section id="shorts" class="categoria"><h2>Shorts</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Short</h3><button class="btn" onclick="add('Short')">Adicionar</button></div></div></section>
-
-<section id="vestidos" class="categoria"><h2>Vestidos</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Vestido</h3><button class="btn" onclick="add('Vestido')">Adicionar</button></div></div></section>
-
-<section id="saida" class="categoria"><h2>Saída de Banho</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Saída</h3><button class="btn" onclick="add('Saída')">Adicionar</button></div></div></section>
-
-<section id="blusas" class="categoria"><h2>Blusas</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Blusa</h3><button class="btn" onclick="add('Blusa')">Adicionar</button></div></div></section>
-
-<section id="oculos" class="categoria"><h2>Óculos</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Óculos</h3><button class="btn" onclick="add('Óculos')">Adicionar</button></div></div></section>
-
-<section id="chapeu" class="categoria"><h2>Chapéu / Boné</h2><div class="produtos"><div class="produto"><img src="https://via.placeholder.com/400x300"><h3>Chapéu</h3><button class="btn" onclick="add('Chapéu')">Adicionar</button></div></div></section>
-
+  <div class="produto">
+    <h2>Produto Exemplo</h2>
+    <button class="btn" onclick="add()">Adicionar ao carrinho</button>
+  </div>
 </div>
 
 <div class="cart" onclick="openCart()">🛒<span id="count">0</span></div>
-<a class="whatsapp" href="https://wa.me/558981178676">💬</a>
 
 <div class="modal" id="modal">
   <div class="modal-box">
     <h2>Carrinho</h2>
     <ul id="list"></ul>
-    <button class="btn" onclick="finish()">Finalizar no WhatsApp</button><br><br>
-    <button onclick="closeCart()">Fechar</button>
+    <button class="btn" onclick="closeCart()">Fechar</button>
   </div>
 </div>
 
 <script>
 let cart=[];
-function toggleMenu(){menu.style.display=menu.style.display==='block'?'none':'block'}
-function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});menu.style.display='none'}
-function add(nome){cart.push(nome);count.innerText=cart.length}
-function openCart(){list.innerHTML='';cart.forEach(i=>list.innerHTML+=`<li>${i}</li>`);modal.style.display='block'}
-function closeCart(){modal.style.display='none'}
-function finish(){
-  let msg='Olá 😊 Quero comprar:%0A';
-  cart.forEach(i=>msg+=`- ${i}%0A`);
-  window.open('https://wa.me/558981178676?text='+msg);
+function toggleMenu(){
+  menu.style.display=menu.style.display==='block'?'none':'block';
 }
+function add(){
+  cart.push('Produto');
+  count.innerText=cart.length;
+}
+function openCart(){
+  list.innerHTML='';
+  cart.forEach(i=>list.innerHTML+=`<li>${i}</li>`);
+  modal.style.display='block';
+}
+function closeCart(){modal.style.display='none'}
+function go(){menu.style.display='none'}
 </script>
 
 </body>
 </html>
-
